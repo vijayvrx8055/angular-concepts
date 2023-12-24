@@ -28,13 +28,11 @@
             <!-- <div class="form-display" *ngIf="submitted"> -->
             <div class="form-display" >
                 <h2>Form Details:</h2>
-                <p>Value: {{userForm.value | json}}</p>
+                <p>Value: {{user|json}}</p>
                 <hr>
                 <p>Dirty: {{userForm.dirty}}</p>
                 <p>Valid: {{userForm.valid}}</p>
-                <p>Touched: {{userForm.touched}}</p>
-
-                <button type="button" class="btn btn-danger" (click)="clear()">Go Back</button>
+                <p>Touched: {{userForm.touched}}</p>    
             </div>
         </form>
     </div>
