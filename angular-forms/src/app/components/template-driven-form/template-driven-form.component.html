@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+        <!-- form group reference -->
+        <form #userForm="ngForm" (ngSubmit)="formSubmitted(userForm)" >
+            <!-- <div *ngIf="!submitted"> -->
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name: </label>
+                <input class="mx-4" type="text" id="firstName" name="firstName" ngModel/>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name: </label>
+                <input class="mx-4" type="text" id="lastName" name="lastName" ngModel/>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address: </label>
+                <input type="email" id="exampleInputEmail1" name="email" ngModel/>
+                
+            </div>
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender: </label>
+                <input type="radio" id="gender" value="male" class="mx-4" name="gender" ngModel/>Male
+                <input type="radio" id="gender" value="female" class="mx-4" name="gender" ngModel/>Female
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-danger">Clear</button>
+            <!-- </div> -->
+            <hr>
+            <!-- <div class="form-display" *ngIf="submitted"> -->
+            <div class="form-display" >
+                <h2>Form Details:</h2>
+                <p>Value: {{userForm.value | json}}</p>
+                <hr>
+                <p>Dirty: {{userForm.dirty}}</p>
+                <p>Valid: {{userForm.valid}}</p>
+                <p>Touched: {{userForm.touched}}</p>
+
+                <button type="button" class="btn btn-danger" (click)="clear()">Go Back</button>
+            </div>
+        </form>
+    </div>
+</div>
