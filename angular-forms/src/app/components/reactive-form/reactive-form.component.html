@@ -1,5 +1,6 @@
 <div class="card">
     <div class="card-body">
+        <h2>Reactive Forms using FormGroup manually</h2>
         <form [formGroup]="userForm" (ngSubmit)="formSubmitted()">
             <table>
                 <div class="mb-3">
@@ -16,15 +17,15 @@
                 </div>
                 <div class="mb-3">
                     <tr>
-                        <td><label for="exampleInputEmail1" class="form-label">Email address: </label></td>
-                        <td><input type="email" id="exampleInputEmail1" name="email"  formControlName="email"/></td>
+                        <td><label for="email" class="form-label">Email address: </label></td>
+                        <td><input type="email" id="email" name="email"  formControlName="email"/></td>
                     </tr>
                 </div>
                 <div class="mb-3">
                     <tr>
                         <td><label for="gender" class="form-label">Gender: </label></td>
-                        <td><input type="radio" id="gender" value="male" class="mx-4" name="gender" formControlName="gender" />Male
-                        <input type="radio" id="gender" value="female" class="mx-4" name="gender" formControlName="gender" />Female</td>
+                        <td><input type="radio" id="gender1" value="male" class="mx-4" name="gender" formControlName="gender" />Male
+                        <input type="radio" id="gender2" value="female" class="mx-4" name="gender" formControlName="gender" />Female</td>
                     </tr>
                 </div>
                 <tr>
@@ -36,9 +37,66 @@
                     </td>
                 </tr>
             </table>
-           
-            
-            
         </form>
+        <!-- /////////////////////////////////////////////////////////////////////// -->
+        <hr><hr>
+        <!-- /////////////////////////////////////////////////////////////////////// -->
+        <h2>Reactive forms using FormBuilder API</h2>
+        <h3>Login Form</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="loginFormSubmitted()">
+            <table>
+                <div class="mb-3">
+                    <tr>
+                        <td><label for="email" class="form-label">Email address: </label></td>
+                        <td><input type="email" id="email1" name="email" formControlName="email" /></td>
+                    </tr>
+                </div>
+                <div class="mb-3">
+                    <tr>
+                        <td><label for="lastName" class="form-label">Password: </label></td>
+                        <td><input class="mx-4" type="password" id="password" name="password" formControlName="password" /></td>
+                    </tr>
+                </div>
+                <div formArrayName="interests">
+                    <div *ngFor="let interest of getInterests().controls; let i=index">
+                        <div [formGroupName]="i">
+                        {{i}}
+                        <table>
+                            <tr>
+                                <td>
+                                    Interest Name:
+                                </td>
+                                <td>
+                                    <input type="text" formControlName="name">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Interest Time:
+                                </td>
+                                <td>
+                                    <input type="text" formControlName="timeSpent">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button (click)="removeInterest(i)" class="btn btn-danger">-</button>
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </td>
+                    <td>
+                        <button type="reset" class="btn btn-danger">Clear</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <button (click)="addInterest()" class="btn btn-primary">Add New Interest (+)</button>
     </div>
 </div>
