@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 /***
@@ -13,51 +13,81 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   templateUrl: './reactive-form.component.html',
   styleUrl: './reactive-form.component.css'
 })
-export class ReactiveFormComponent {
-  constructor(private formBuilder: FormBuilder){}
+export class ReactiveFormComponent implements OnInit {
+
+
+  friendList = [{ id: 1, name: 'Vijay' },
+  { id: 2, name: 'Ajay' },
+  { id: 3, name: 'Ashok' },
+  { id: 4, name: 'Bini' }];
+
 
   // using FormGroup manually
-  userForm=new FormGroup({
+  //user form
+  userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
-    email:new FormControl(''),
-    gender:new FormControl('')
+    email: new FormControl(''),
+    gender: new FormControl('')
   });
 
   //using formbuilder for creating group
+  //login form model
   loginForm = this.formBuilder.group({
-    email:['sample@domain.com',
-    [Validators.required,
+    email: ['sample@domain.com',
+      [Validators.required,
       Validators.email]],
-    password:['abc@1234'],
-    interests:this.formBuilder.array([])
+    password: ['abc@1234'],
+    interests: this.formBuilder.array([])
   })
 
-  getInterests(): FormArray{
-    return this.loginForm.get('interests') as FormArray;
-  }
-  
-  createInterest(): FormGroup{
-    return this.formBuilder.group({
-      name:'',
-      timeSpent:''
+  // friend List model
+  friendsListModel = this.formBuilder.group({
+    friends: []
+  })
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    console.log('component initialized');
+    //valueChanges
+    this.loginForm.get('email')?.valueChanges.subscribe(value => {
+      console.log('new value is: ' + value);
+    })
+    this.loginForm.get('email')?.statusChanges.subscribe(status => {
+      console.log('Valid:' + status);
     })
   }
 
-  addInterest(){
+  //------------------------------------------------------------------
+  getInterests(): FormArray {
+    return this.loginForm.get('interests') as FormArray;
+  }
+
+  createInterest(): FormGroup {
+    return this.formBuilder.group({
+      name: '',
+      timeSpent: ''
+    })
+  }
+
+  addInterest() {
     this.getInterests().push(this.createInterest())
   }
 
-  removeInterest(index:number){
+  removeInterest(index: number) {
     this.getInterests().removeAt(index);
   }
-  
+  //-----------------------------------------------------------
 
-  formSubmitted(){
+  formSubmitted() {
     console.log(this.userForm.value);
   }
 
-  loginFormSubmitted(){
+  loginFormSubmitted() {
     console.log(this.loginForm.value);
+  }
+
+  friendSubmitted() {
+    console.log('Result:', this.friendsListModel.value);
   }
 }
