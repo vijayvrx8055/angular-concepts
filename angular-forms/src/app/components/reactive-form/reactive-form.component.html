@@ -1,7 +1,10 @@
 <div class="card">
     <div class="card-body">
         <h2>Reactive Forms using FormGroup manually</h2>
-        <form [formGroup]="userForm" (ngSubmit)="formSubmitted()">
+        <hr>
+        <h2>User Validation Form</h2>
+        <!-- //novalidate=> disable default HTML validation -->
+        <form [formGroup]="userForm" (ngSubmit)="formSubmitted()" novalidate>
             <table>
                 <div class="mb-3">
                     <tr>
@@ -35,7 +38,7 @@
                 </div>
                 <tr>
                     <td>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button [disabled]="!userForm.valid" type="submit" class="btn btn-primary">Submit</button>
                     </td>
                     <td>
                         <button type="reset" class="btn btn-danger">Clear</button>
@@ -43,6 +46,8 @@
                 </tr>
             </table>
         </form>
+        {{userForm.value|json}}<br>
+        Is valid: {{userForm.valid}}
         <!-- /////////////////////////////////////////////////////////////////////// -->
         <hr>
         <hr>

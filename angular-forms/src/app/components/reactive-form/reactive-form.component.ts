@@ -26,10 +26,10 @@ export class ReactiveFormComponent implements OnInit {
   // using FormGroup manually
   //user form
   userForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    gender: new FormControl('')
+    firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-Za-z]+$")]),
+    lastName: new FormControl('', [Validators.minLength(3), Validators.pattern("^[A-Za-z]+$")]),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    gender: new FormControl('', [Validators.required])
   });
 
   //using formbuilder for creating group
