@@ -11,6 +11,13 @@
                         <td><label for="firstName" class="form-label">First Name: </label></td>
                         <td><input class="mx-4" type="text" id="firstName" name="firstName"
                                 formControlName="firstName" /></td>
+                        <td>
+                            <div class="error" *ngIf="!firstName.valid && (firstName.touched || firstName.dirty)">
+                                <p [hidden]="!firstName.errors!['required']">First Name is Required</p>
+                                <p [hidden]="!firstName.errors!['minlength']">Min length should be 3</p>
+                                <p [hidden]="!firstName.errors!['pattern']">Only Alphabets are allowed</p>
+                            </div>
+                        </td>
                     </tr>
                 </div>
                 <div class="mb-3">
@@ -18,12 +25,22 @@
                         <td><label for="lastName" class="form-label">Last Name: </label></td>
                         <td><input class="mx-4" type="text" id="lastName" name="lastName" formControlName="lastName" />
                         </td>
+                        <td>
+                            <div class="error" *ngIf="!lastName.valid && (lastName.touched || lastName.dirty)">
+                                <p>Last Name is Invalid</p>
+                            </div>
+                        </td>
                     </tr>
                 </div>
                 <div class="mb-3">
                     <tr>
                         <td><label for="email" class="form-label">Email address: </label></td>
                         <td><input type="email" id="email" name="email" formControlName="email" /></td>
+                        <td>
+                            <div class="error" *ngIf="!email.valid && (email.touched || email.dirty)">
+                                <p>Email is Invalid</p>
+                            </div>
+                        </td>
                     </tr>
                 </div>
                 <div class="mb-3">

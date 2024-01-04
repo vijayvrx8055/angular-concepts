@@ -31,7 +31,22 @@ export class ReactiveFormComponent implements OnInit {
     email: new FormControl('', [Validators.email, Validators.required]),
     gender: new FormControl('', [Validators.required])
   });
+  //-------------------------------------------
+  //Getter methods of user form
 
+  get firstName(): FormControl {
+    return this.userForm.get("firstName") as FormControl;
+  }
+
+  get lastName(): FormControl {
+    return this.userForm.get("lastName") as FormControl;
+  }
+
+  get email(): FormControl {
+    return this.userForm.get("email") as FormControl;
+  }
+  // END of Getter methods
+  //----------------------------------------------
   //using formbuilder for creating group
   //login form model
   loginForm = this.formBuilder.group({
