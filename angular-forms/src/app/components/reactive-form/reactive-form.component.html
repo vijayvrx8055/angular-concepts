@@ -123,10 +123,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <td><button type="submit" class="btn btn-primary">Submit</button></td>
+
                 </tr>
+
             </table>
         </form>
+
+        <!-- //ngModel can't be used inside formGroup -->
+        <input class="mx-4" type="text" [(ngModel)]="dynamicFriend" placeholder="Enter friend Name" />
+
+        <button (click)="addFriendToList()" class="btn btn-primary">Add Friend</button>
+
 
         {{friendsListModel.value | json}}
     </div>

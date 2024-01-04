@@ -16,6 +16,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class ReactiveFormComponent implements OnInit {
 
 
+  dynamicFriend = '';
   friendList = [{ id: 1, name: 'Vijay' },
   { id: 2, name: 'Ajay' },
   { id: 3, name: 'Ashok' },
@@ -43,7 +44,7 @@ export class ReactiveFormComponent implements OnInit {
 
   // friend List model
   friendsListModel = this.formBuilder.group({
-    friends: []
+    friends: [],
   })
   constructor(private formBuilder: FormBuilder) { }
 
@@ -89,5 +90,12 @@ export class ReactiveFormComponent implements OnInit {
 
   friendSubmitted() {
     console.log('Result:', this.friendsListModel.value);
+  }
+  addFriendToList() {
+    console.log('friend:', this.dynamicFriend);
+    this.friendList.push({
+      id: Number((Math.random() * 100).toFixed(0)),
+      name: this.dynamicFriend
+    });
   }
 }
