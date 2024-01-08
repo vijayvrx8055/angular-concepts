@@ -45,6 +45,19 @@
                 </div>
                 <div class="mb-3">
                     <tr>
+                        <td><label for="age" class="form-label">Age: </label></td>
+                        <td><input type="text" id="age" name="age" formControlName="age" /></td>
+                        <td>
+                            <div class="error" *ngIf="!age.valid && (age.touched || age.dirty)">
+                                <p [hidden]="!age.errors!['isNull']">Age is required!</p>
+                                <p [hidden]="!age.errors!['age']">Age should be greater than or equal to 18!
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+                <div class="mb-3">
+                    <tr>
                         <td><label for="gender" class="form-label">Gender: </label></td>
                         <td><input type="radio" id="gender1" value="male" class="mx-4" name="gender"
                                 formControlName="gender" />Male

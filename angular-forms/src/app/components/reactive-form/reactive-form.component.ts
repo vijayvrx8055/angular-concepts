@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AgeValidator } from '../../validators/age.validator';
 
 /***
  * 1. Import ReactiveFormsModule in our app.module.ts file
@@ -29,6 +30,7 @@ export class ReactiveFormComponent implements OnInit {
     firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern("^[A-Za-z]+$")]),
     lastName: new FormControl('', [Validators.minLength(3), Validators.pattern("^[A-Za-z]+$")]),
     email: new FormControl('', [Validators.email, Validators.required]),
+    age: new FormControl('', [AgeValidator.nullCheck, AgeValidator.validateAge]),
     gender: new FormControl('', [Validators.required])
   });
   //-------------------------------------------
@@ -44,6 +46,10 @@ export class ReactiveFormComponent implements OnInit {
 
   get email(): FormControl {
     return this.userForm.get("email") as FormControl;
+  }
+
+  get age(): FormControl {
+    return this.userForm.get('age') as FormControl;
   }
   // END of Getter methods
   //----------------------------------------------
