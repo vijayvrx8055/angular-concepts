@@ -1,38 +1,48 @@
 <div class="card">
     <div class="card-body">
         <!-- form group reference -->
-        <form #userForm="ngForm" (ngSubmit)="formSubmitted(userForm)" >
+        <form #userForm="ngForm" (ngSubmit)="formSubmitted(userForm)">
             <!-- <div *ngIf="!submitted"> -->
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name: </label>
-                <input class="mx-4" type="text" id="firstName" name="firstName" ngModel/>
+                <input class="mx-4" type="text" id="firstName" name="firstName" ngModel />
             </div>
             <div class="mb-3">
                 <label for="lastName" class="form-label">Last Name: </label>
-                <input class="mx-4" type="text" id="lastName" name="lastName" ngModel/>
+                <input class="mx-4" type="text" id="lastName" name="lastName" ngModel />
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address: </label>
-                <input type="email" id="exampleInputEmail1" name="email" ngModel/>
-                
+                <input type="email" id="exampleInputEmail1" name="email" ngModel />
             </div>
+
+            <div class="mb-3">
+                <label for="age" class="form-label">Age: </label>
+                <input type="number" name="age" placeholder="Enter Age" ageTempValidator #ageField="ngModel" ngModel
+                    required />
+                <div class="error" *ngIf="!ageField.valid && (ageField.dirty || ageField.touched)">
+                    <p [hidden]="!ageField.errors!['required']">Age is required !</p>
+                    <p [hidden]="!ageField.errors!['age']">Age should be >= 18 !</p>
+                </div>
+            </div>
+
             <div class="mb-3">
                 <label for="gender" class="form-label">Gender: </label>
-                <input type="radio" id="gender" value="male" class="mx-4" name="gender" ngModel/>Male
-                <input type="radio" id="gender" value="female" class="mx-4" name="gender" ngModel/>Female
+                <input type="radio" id="gender" value="male" class="mx-4" name="gender" ngModel />Male
+                <input type="radio" id="gender" value="female" class="mx-4" name="gender" ngModel />Female
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <button type="reset" class="btn btn-danger">Clear</button>
             <!-- </div> -->
             <hr>
             <!-- <div class="form-display" *ngIf="submitted"> -->
-            <div class="form-display" >
+            <div class="form-display">
                 <h2>Form Details:</h2>
                 <p>Value: {{user|json}}</p>
                 <hr>
                 <p>Dirty: {{userForm.dirty}}</p>
                 <p>Valid: {{userForm.valid}}</p>
-                <p>Touched: {{userForm.touched}}</p>    
+                <p>Touched: {{userForm.touched}}</p>
             </div>
         </form>
     </div>

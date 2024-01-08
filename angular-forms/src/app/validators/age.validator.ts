@@ -19,7 +19,7 @@ export class AgeValidator {
         let value = control.value;
 
         //add error condition for null check
-        if (value == '' || value == null) {
+        if (isNaN(value) || value == '' || value == null) {
             return { isNull: true };
         }
         return null;

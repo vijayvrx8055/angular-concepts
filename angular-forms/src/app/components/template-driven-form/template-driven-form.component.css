@@ -1,11 +1,16 @@
-.card{
+.card {
     width: 80%;
     margin: auto;
     background-color: blanchedalmond;
 }
 
-.form-label,button{
-    margin-left:50px;
+.form-label,
+button {
+    margin-left: 50px;
     padding: 10px;
 
+}
+
+.error {
+    color: red;
 }

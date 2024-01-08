@@ -7,31 +7,34 @@ import { User } from '../../model/User';
   templateUrl: './template-driven-form.component.html',
   styleUrl: './template-driven-form.component.css'
 })
-export class TemplateDrivenFormComponent implements OnInit{
+export class TemplateDrivenFormComponent implements OnInit {
 
-submitted=false;
+  submitted = false;
 
-@ViewChild('userForm') userForm : NgForm | undefined;
-user:User={firstName:'',lastName:'',email:'',gender:''};
+  //take input
+  @ViewChild('userForm') userForm: NgForm | undefined;
+  user: User = { firstName: '', lastName: '', email: '', age: '', gender: '' };
 
   ngOnInit(): void {
-   setTimeout(()=>{
-    this.user.firstName="Firstname";
-    this.user.lastName="Lastname";
-    this.user.email="Sample@domain.com";
-    this.user.gender="male";
-    this.userForm?.setValue(this.user);
-   }); 
+    setTimeout(() => {
+      this.user.firstName = "Firstname";
+      this.user.lastName = "Lastname";
+      this.user.email = "Sample@domain.com";
+      this.user.age = '';
+      this.user.gender = "male";
+      this.userForm?.setValue(this.user);
+    });
   }
 
 
-  formSubmitted(userForm: NgForm){
-    this.submitted=true;
-    this.user.firstName=userForm.form.controls['firstName'].value;
-    this.user.lastName=userForm.form.controls['lastName'].value;
-    this.user.email=userForm.form.controls['email'].value;
-    this.user.gender=userForm.form.controls['gender'].value;
-    console.log('User:',this.user);
+  formSubmitted(userForm: NgForm) {
+    this.submitted = true;
+    this.user.firstName = userForm.form.controls['firstName'].value;
+    this.user.lastName = userForm.form.controls['lastName'].value;
+    this.user.email = userForm.form.controls['email'].value;
+    this.user.age = userForm.form.controls['age'].value;
+    this.user.gender = userForm.form.controls['gender'].value;
+    console.log('User:', this.user);
   }
 
 }
