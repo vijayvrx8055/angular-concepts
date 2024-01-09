@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>List Users</h2>
+    <hr>
+    <button (click)="getUsers()">GET USERS</button>
+    <hr>
+    <table>
+        <tr>
+            <th>Sl.No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>About</th>
+        </tr>
+        <tr *ngFor="let user of users; let i=index">
+            <td>{{i}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.about}}</td>
+        </tr>
+
+    </table>
+</div>

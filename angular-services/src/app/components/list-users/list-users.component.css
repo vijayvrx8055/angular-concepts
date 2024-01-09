@@ -1,0 +1,21 @@
+td,
+th {
+    padding: 5px;
+    margin: 20px;
+}
+
+.container,
+table {
+    background-color: aliceblue;
+    width: 70%;
+    text-align: center;
+    margin: auto;
+}
+
+table,
+tr,
+td,
+th {
+    padding: 5px;
+    border: 1px solid black;
+}
